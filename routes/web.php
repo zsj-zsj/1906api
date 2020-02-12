@@ -20,6 +20,14 @@ Route::get('phpinfo', function () {
 });
 
 
+//Api
+Route::prefix('/api')->group(function(){
+    Route::get('/userinfo','Api\UserController@info');
+    Route::post('/reg','Api\UserController@reg');
+});
+
+
+
 
 //测试
 Route::prefix('/test')->group(function(){

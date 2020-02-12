@@ -18,3 +18,11 @@ Route::get('/', function () {
 Route::get('phpinfo', function () {
     phpinfo();
 });
+
+
+
+//测试
+Route::prefix('/test')->group(function(){
+    Route::get('/redis','Testcontroller@testredis');
+});
+

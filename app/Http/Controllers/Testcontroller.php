@@ -34,11 +34,51 @@ class Testcontroller extends Controller
         $appsecret='f4852897a0b441624d7c845c878f2548';
         $url='https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='.$Appid.'&secret='.$appsecret;
 
-        $ch = curl_init($url);  //初始化
-        curl_setopt($ch, CURLOPT_HEADER, 0);  //设置参数选项
-        curl_exec($ch);     //执行会话
-        curl_close($ch);    //关闭会话
+        $ch = curl_init($url);  //初始化   1
+        curl_setopt($ch, CURLOPT_HEADER, 0);  //设置参数选项  2
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);  //  2
+        $response=curl_exec($ch);     //执行会话   3
+        curl_close($ch);    //关闭会话   4
+        
+        $arr=json_decode($response,true);
+        dd($arr);
 
+    }
+
+    //curl  POST
+    public function curlPost(){
+        
+        $token='30_XCg_HQ7KEHZwL32a3IeeCSscd9Yon0pzcfVEGREV6lU_qJ4m_LnGt9R2z3835iK9AiLSvdR0l-H3lIjyFey0pnc2QFl0WfIil-5d1i80sbUajvL2dkSL8AbePc-bENg_zKA5GLPSqZZXYV_2XBEaACAKOR';
+        $url='https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token='.$token;
+        $ticket=[
+            'expire_seconds'=>'604800',
+            'action_name'=>'QR_STR_SCENE',
+            'action_info'=>[
+                'scene'=>[
+                    'scene_str'=>'test'
+                ]
+            ]
+        ];
+
+        $ch=curl_init($url);    //初始化
+        curl_setopt($ch, CURLOPT_HEADER, 0);  //设置参数选项  2
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER , 1); //0启用浏览器输出 1 关闭浏览器输出，可用变量接收响应
+        curl_setopt($ch,CURLOPT_POST,true);
+        curl_setopt($ch,CURLOPT_HTTPHEADER,['Content-Type:application/json']);
+        curl_setopt($ch,CURLOPT_POSTFIELDS,json_encode($ticket));
+
+        $response=curl_exec($ch);   //执行
+        curl_close($ch);  //关闭
+
+        $arr=json_decode($response,true);
+        // dd($arr);
+
+        //转二维码
+        $tickets=UrlEncode($arr['ticket']);
+        $urls='https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket='.$tickets;
+        // $file=file_get_contents($urls);
+        return redirect($urls);
+        
     }
 
     //Guzzle
@@ -54,6 +94,37 @@ class Testcontroller extends Controller
         $arr=json_decode($data,true);
         dd($arr);
         // echo $data;
+
+    }
+
+    //Guzzle  post
+    public function GuzzlePost(){
+        $token='30_XCg_HQ7KEHZwL32a3IeeCSscd9Yon0pzcfVEGREV6lU_qJ4m_LnGt9R2z3835iK9AiLSvdR0l-H3lIjyFey0pnc2QFl0WfIil-5d1i80sbUajvL2dkSL8AbePc-bENg_zKA5GLPSqZZXYV_2XBEaACAKOR';
+        $url='https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token='.$token;
+        $ticket=[
+            'expire_seconds'=>'604800',
+            'action_name'=>'QR_STR_SCENE',
+            'action_info'=>[
+                'scene'=>[
+                    'scene_str'=>'test'
+                ]
+            ]
+        ];
+
+
+        $client = new Client();
+        $response =$client->request('POST',$url,[
+            'body'=>json_encode($ticket,JSON_UNESCAPED_UNICODE),
+        ]);
+        $t=$response->getBody();
+        $arr=json_decode($t,true);
+        // dd($arr);
+        
+        //转二维码
+        $tickets=UrlEncode($arr['ticket']);
+        $urls='https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket='.$tickets;
+        // $file=file_get_contents($urls);
+        return redirect($urls);
 
     }
 }

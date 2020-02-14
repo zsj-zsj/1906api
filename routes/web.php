@@ -33,7 +33,11 @@ Route::prefix('/api')->group(function(){
 Route::prefix('/test')->group(function(){
     Route::get('/redis','Testcontroller@testredis');   //redis
     Route::get('/file_get_contents','Testcontroller@file_get_contents');   //file_get_contents  get
-    Route::get('/curl','Testcontroller@curl');   //curl   get  
+    Route::get('/curl','Testcontroller@curl');   //curl   get    
+    Route::get('/curlPost','Testcontroller@curlPost');
     Route::get('/Guzzle','Testcontroller@Guzzle');  //Guzzle   get
+    Route::get('/GuzzlePost','Testcontroller@GuzzlePost');  //Guzzle    Post
+    
+
 });
 

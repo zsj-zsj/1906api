@@ -68,6 +68,11 @@ class Testcontroller extends Controller
         curl_setopt($ch,CURLOPT_POSTFIELDS,json_encode($ticket));
 
         $response=curl_exec($ch);   //执行
+
+        //处理报错
+        // $errno=curl_errno($ch);    //错误码
+        // $error=curl_error($ch);    //错误信息
+
         curl_close($ch);  //关闭
 
         $arr=json_decode($response,true);

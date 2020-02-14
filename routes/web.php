@@ -31,6 +31,9 @@ Route::prefix('/api')->group(function(){
 
 //测试
 Route::prefix('/test')->group(function(){
-    Route::get('/redis','Testcontroller@testredis');
+    Route::get('/redis','Testcontroller@testredis');   //redis
+    Route::get('/file_get_contents','Testcontroller@file_get_contents');   //file_get_contents  get
+    Route::get('/curl','Testcontroller@curl');   //curl   get  
+    Route::get('/Guzzle','Testcontroller@Guzzle');  //Guzzle   get
 });
 

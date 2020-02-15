@@ -38,6 +38,14 @@ Route::prefix('/test')->group(function(){
     Route::get('/Guzzle','Testcontroller@Guzzle');  //Guzzle   get
     Route::get('/GuzzlePost','Testcontroller@GuzzlePost');  //Guzzle    Post
     
+    Route::post('/post1','Testcontroller@post1');
+    Route::post('/post2','Testcontroller@post2');
+    Route::post('/post3','Testcontroller@post3');
+    Route::post('/upload','Testcontroller@upload');
 
+    Route::post('/guzzleget','Testcontroller@guzzleget');
+    Route::post('/guzzlepost1','Testcontroller@guzzlepost1');
+    Route::post('/guzzleupload','Testcontroller@guzzleupload');
+    Route::post('/guzzlejson','Testcontroller@guzzlejson');
 });
 

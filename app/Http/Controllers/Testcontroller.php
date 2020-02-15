@@ -132,4 +132,48 @@ class Testcontroller extends Controller
         return redirect($urls);
 
     }
+
+
+
+    public function post1(){
+        dump($_POST);
+    }
+
+    public function post2(){
+        print_r($_POST);
+    }
+
+    public function post3(){
+        echo "aaaa";  
+        $data=file_get_contents("php://input");
+        $arr=json_decode($data,true);
+        dump($arr);
+        echo "aaaa";   
+    }
+
+    public function upload(){
+        print_r($_POST);
+        echo "<br>";
+        print_r($_FILES);
+    }
+
+    public function guzzleget(){
+        print_r($_GET);
+    }
+
+    public function guzzlepost1(){
+        print_r($_POST);
+    }
+
+    public function guzzleupload(){
+        print_r($_POST);
+
+        print_r($_FILES);
+    }
+
+    public function guzzlejson(){
+        $data=file_get_contents("php://input");
+        $arr=json_decode($data,true);
+        dump($arr);
+    }
 }

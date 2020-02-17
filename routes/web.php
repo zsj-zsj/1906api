@@ -29,6 +29,8 @@ Route::prefix('/api')->group(function(){
 Route::get('goods/index','GoodsController@index');
 Route::get('goods/goodslist','GoodsController@goodslist');
 
+Route::get('goods/brand','GoodsController@brand');
+
 
 
 

@@ -26,6 +26,9 @@ Route::prefix('/api')->group(function(){
     Route::post('/reg','Api\UserController@reg');
 });
 
+Route::get('goods/index','GoodsController@index');
+Route::get('goods/goodslist','GoodsController@goodslist');
+
 
 
 

@@ -162,7 +162,7 @@ class Testcontroller extends Controller
     }
 
     public function guzzlepost1(){
-        print_r($_POST);
+        echo "<pre>";print_r($_POST);"/pre";
     }
 
     public function guzzleupload(){

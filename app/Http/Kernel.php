@@ -12,7 +12,7 @@ class Kernel extends HttpKernel
      * These middleware are run during every request to your application.
      *
      * @var array
-     */
+     */ //全局
     protected $middleware = [
         \App\Http\Middleware\TrustProxies::class,
         \App\Http\Middleware\CheckForMaintenanceMode::class,
@@ -50,6 +50,7 @@ class Kernel extends HttpKernel
      *
      * @var array
      */
+    //路由中间件
     protected $routeMiddleware = [
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
@@ -61,6 +62,7 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'ApiFilter' => \App\Http\Middleware\ApiFilter::class,
     ];
 
     /**

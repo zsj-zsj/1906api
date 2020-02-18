@@ -21,21 +21,21 @@ Route::get('phpinfo', function () {
 
 
 //Api
-Route::prefix('/api')->group(function(){
+Route::prefix('/api')->middleware('ApiFilter')->group(function(){
     Route::get('/userinfo','Api\UserController@info');
     Route::post('/reg','Api\UserController@reg');
 });
 
-Route::get('goods/index','GoodsController@index');
-Route::get('goods/goodslist','GoodsController@goodslist');
-
-Route::get('goods/brand','GoodsController@brand');
-
+Route::prefix('/goods')->middleware('ApiFilter')->group(function(){
+    Route::get('index','GoodsController@index');
+    Route::get('goodslist','GoodsController@goodslist');
+    Route::get('brand','GoodsController@brand');
+});
 
 
 
 //测试
-Route::prefix('/test')->group(function(){
+Route::prefix('/test')->middleware('ApiFilter')->group(function(){
     Route::get('/redis','Testcontroller@testredis');   //redis
     Route::get('/file_get_contents','Testcontroller@file_get_contents');   //file_get_contents  get
     Route::get('/curl','Testcontroller@curl');   //curl   get    

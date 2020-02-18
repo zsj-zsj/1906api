@@ -70,7 +70,7 @@ class GoodsController extends Controller
             echo "<pre>";print_r($cache_goods); echo "</pre>";
         }else{
             echo "无缓存";
-            $goods=GoodsModel::where('goods_id','=',$goods_id)->first()->toArray();
+            $goods=GoodsStatic::where('goods_id','=',$goods_id)->first()->toArray();
             $goods_json=json_encode($goods);
             Redis::set($goods_key,$goods_json); //存
             Redis::expire($goods_key,60);              //过期时间   

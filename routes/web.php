@@ -52,5 +52,8 @@ Route::prefix('/test')->group(function(){
     Route::post('/guzzlepost1','Testcontroller@guzzlepost1');
     Route::post('/guzzleupload','Testcontroller@guzzleupload');
     Route::post('/guzzlejson','Testcontroller@guzzlejson');
+
+    Route::get('/redisfs','Testcontroller@redisfs');
+    
 });
 

@@ -176,4 +176,27 @@ class Testcontroller extends Controller
         $arr=json_decode($data,true);
         dump($arr);
     }
+
+
+    public function redisfs(){
+        //redis  key
+        $ua_key="count:".substr(md5($_SERVER['HTTP_USER_AGENT']),5,5);
+        echo "redis的key：".$ua_key;echo "<br>";
+        
+        //次数
+        $count=Redis::incr($ua_key);
+        echo "访问次数".$count."：正常访问"; echo "<br>";
+
+        //过期时间
+        // $time=Redis::ttl($ua_key);
+        //判断
+        $get=Redis::get($ua_key);
+        if($get>=10){
+            echo "刷新次数有限";
+            Redis::expire($ua_key,10);
+            die;
+        }
+            
+        echo "正常访问";    
+    }
 }

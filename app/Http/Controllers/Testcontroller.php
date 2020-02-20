@@ -199,4 +199,34 @@ class Testcontroller extends Controller
             
         echo "正常访问";    
     }
+
+
+    public function md5get(){
+
+        $key="key";   //签名的key
+        echo "签名签名：".$key;echo "<br>";
+
+        $data=$_GET['data'];  //发送前的数据
+        echo "数据：".$data;echo "<br>";
+
+        $sign=md5($data.$key); //数据  和 签名
+        echo "加密的签名，没加密数据和签名key：".$sign;echo "<br>";
+    }
+
+    public function md5shou(){
+        $key="key";            //签名的key
+        echo "签名的key".$key;echo "<br>";
+        $data=$_GET['data'];   //接受数据
+        echo "接受的数据".$data;echo "<br>";
+        $sign=$_GET['sign'];   //接受签名
+        echo "接受加密的数据和签名".$sign;echo "<br>";
+        $sign2=md5($data.$key);   //加密 数据和签名
+        echo "给数据和签名加密".$sign2;echo "<br>";
+        if($sign!==$sign2){       
+            echo "验证失败";die;
+        }
+
+        echo "哈喽";
+
+    }
 }

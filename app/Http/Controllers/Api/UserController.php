@@ -35,4 +35,16 @@ class UserController extends Controller
         
 
     }
+
+
+    public function weather(){
+        $city=$_GET['city'];
+        // https://free-api.heweather.com/s6/weather/forecast?location=CN101010100&key=XXXXXXXX";
+        $url='https://free-api.heweather.com/s6/weather/forecast?location='.$city.'&key=b7866e916696476b8e04239d77e6a008';
+        $weather=file_get_contents($url);
+        $arr=json_decode($weather,true);
+        dd($arr);
+
+
+    }
 }

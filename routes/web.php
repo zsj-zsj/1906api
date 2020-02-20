@@ -24,6 +24,8 @@ Route::get('phpinfo', function () {
 Route::prefix('/api')->middleware('ApiFilter')->group(function(){
     Route::get('/userinfo','Api\UserController@info');
     Route::post('/reg','Api\UserController@reg');
+
+    Route::get('/weather','Api\UserController@weather');
 });
 
 Route::prefix('/goods')->middleware('ApiFilter')->group(function(){
@@ -54,6 +56,9 @@ Route::prefix('/test')->middleware('ApiFilter')->group(function(){
     Route::post('/guzzlejson','Testcontroller@guzzlejson');
 
     Route::get('/redisfs','Testcontroller@redisfs');
+
+    Route::get('/md5get','Testcontroller@md5get');
+    Route::get('/md5shou','Testcontroller@md5shou');
     
 });
 

@@ -229,4 +229,19 @@ class Testcontroller extends Controller
         echo "哈喽";
 
     }
+
+    public function verifySign(){
+        $key="key";
+        
+        $data=$_GET['data'];
+        $sign=$_GET['sign'];
+
+        $sign2=md5($data.$key);
+
+        if($sign==$sign2){
+            echo "验证成功";
+        }else{
+            echo "验证失败";
+        }
+    }
 }

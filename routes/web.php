@@ -59,6 +59,9 @@ Route::prefix('/test')->middleware('ApiFilter')->group(function(){
 
     Route::get('/md5get','Testcontroller@md5get');
     Route::get('/md5shou','Testcontroller@md5shou');
+
+    Route::get('/verifySign','Testcontroller@verifySign');
+    
     
 });
 

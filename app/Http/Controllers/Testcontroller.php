@@ -278,14 +278,24 @@ class Testcontroller extends Controller
 
     //对称
     public function decrypt1(){
+        $sign_key='sign';   //签名
+        $sign=$_GET['sign']; //接收 签名 
+        $data=$_GET['data']; //接受 数据
+
+        $sign2=md5($data.$sign_key);
+
+        //解 对称 加密
         $key='key';
-        $data=$_GET['data'];
-        echo $data;
-        $method="aes-128-cbc";
-        $iv='1111111111aaaaaa';   //十六个字节
+        $method="aes-128-cbc";  //算法
+        $iv='asdzxcqwe1234rfh';   //十六个字节
         $base=base64_decode($data);   //将  base64  转为  密文
         // echo $base;
-        $enc=openssl_decrypt($base,$method,$key,OPENSSL_RAW_DATA,$iv);
-        echo $enc;
+        $enc=openssl_decrypt($base,$method,$key,OPENSSL_RAW_DATA,$iv);  //解密
+        
+        if($sign==$sign2){
+            echo "原来的数据：".$enc;
+        }else{
+            echo "验证失败";
+        }
     }
 }

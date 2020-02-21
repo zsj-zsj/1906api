@@ -275,4 +275,17 @@ class Testcontroller extends Controller
             echo "验证失败";
         }  
     }
+
+    //对称
+    public function decrypt1(){
+        $key='key';
+        $data=$_GET['data'];
+        echo $data;
+        $method="aes-128-cbc";
+        $iv='1111111111aaaaaa';   //十六个字节
+        $base=base64_decode($data);   //将  base64  转为  密文
+        // echo $base;
+        $enc=openssl_decrypt($base,$method,$key,OPENSSL_RAW_DATA,$iv);
+        echo $enc;
+    }
 }

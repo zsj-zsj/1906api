@@ -63,6 +63,8 @@ Route::prefix('/test')->middleware('ApiFilter')->group(function(){
     Route::get('/verifySign','Testcontroller@verifySign');
 
     Route::get('/decrypt','Testcontroller@decrypt');
+
+    Route::get('/decrypt1','Testcontroller@decrypt1');  //对称
     
     
 });

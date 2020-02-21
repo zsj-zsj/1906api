@@ -244,4 +244,35 @@ class Testcontroller extends Controller
             echo "验证失败";
         }
     }
+
+    
+    public function decrypt(){
+        $yuanlaishuju=$_GET['data'];   //接受的数据
+
+        $data=$_GET['miw'];  //接受密文
+
+        $str=strlen($data);  //取字符串长度
+        
+        $code='';  //解密的 数据
+
+        for($i=0;$i<$str;$i++){   //循环解密
+            $miwen=$data[$i];  //密文
+            $ord=ord($data[$i]);    //密文  转 数字
+            echo "密文".$miwen."=>"."密文数字".$ord;echo "<br>";
+
+            // echo "<hr>";
+            $pass=ord($data[$i])-3;   //密文-3  得到 数据的 码
+            echo "原数据的数字码".$pass; echo "<hr>";
+            $code .=chr($pass);
+            
+        }
+        echo "原来数据".$code;echo "<hr>";
+
+
+        if($yuanlaishuju==$code){
+            echo "验证成功";
+        }else{
+            echo "验证成功";
+        }  
+    }
 }

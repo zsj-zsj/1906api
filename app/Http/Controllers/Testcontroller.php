@@ -282,8 +282,6 @@ class Testcontroller extends Controller
         $sign=$_GET['sign']; //接收 签名 
         $data=$_GET['data']; //接受 数据
 
-        $sign2=md5($data.$sign_key);
-
         //解 对称 加密
         $key='key';
         $method="aes-128-cbc";  //算法
@@ -291,9 +289,9 @@ class Testcontroller extends Controller
         $base=base64_decode($data);   //将  base64  转为  密文
         // echo $base;
         $enc=openssl_decrypt($base,$method,$key,OPENSSL_RAW_DATA,$iv);  //解密
-        
+        $sign2=md5($enc.$sign_key);
         if($sign==$sign2){
-            echo "原来的数据：".$enc;
+            echo "验证成功,原来的数据：".$enc;
         }else{
             echo "验证失败";
         }

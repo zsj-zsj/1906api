@@ -245,7 +245,7 @@ class Testcontroller extends Controller
         }
     }
 
-    
+
     public function decrypt(){
         $yuanlaishuju=$_GET['data'];   //接受的数据
 
@@ -272,7 +272,7 @@ class Testcontroller extends Controller
         if($yuanlaishuju==$code){
             echo "验证成功";
         }else{
-            echo "验证成功";
+            echo "验证失败";
         }  
     }
 }

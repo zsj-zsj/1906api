@@ -66,6 +66,7 @@ Route::prefix('/test')->middleware('ApiFilter')->group(function(){
 
     Route::get('/decrypt1','Testcontroller@decrypt1');  //对称
     
-    
+    Route::get('/rsa1','Testcontroller@rsa1');  //非对称
+      
 });
 

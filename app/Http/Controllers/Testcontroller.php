@@ -296,4 +296,16 @@ class Testcontroller extends Controller
             echo "验证失败";
         }
     }
+
+
+    //非对称 解密
+    public function rsa1(){
+        $data=$_GET['data'];  //接受的  base64  
+        $key=file_get_contents('../storage/keys/priv.key');  //私钥key
+        // $key=file_get_contents(storage_path('keys/priv.key'));
+
+        $base=base64_decode($data); //将 base64 转为 密文
+        openssl_private_decrypt($data,$rsa,$key);   //私钥解密
+        echo $rsa;
+    }
 }

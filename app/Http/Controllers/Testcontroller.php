@@ -307,5 +307,11 @@ class Testcontroller extends Controller
         $base=base64_decode($data); //将 base64 转为 密文
         openssl_private_decrypt($base,$rsa,$key);   //私钥解密
         echo "原来数据：".$rsa;
+        echo "<br>";
+        $t_key=file_get_contents('../storage/keys/test_public.key');
+        openssl_public_encrypt($rsa,$dersa,$t_key);
+        echo "返回数据加密".$dersa;
+        return $dersa;
+
     }
 }

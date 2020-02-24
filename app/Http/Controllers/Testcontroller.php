@@ -305,8 +305,7 @@ class Testcontroller extends Controller
         // $key=file_get_contents(storage_path('keys/priv.key'));
 
         $base=base64_decode($data); //将 base64 转为 密文
-        $urlbase=urldecode($base);
-        openssl_private_decrypt($urlbase,$rsa,$key);   //私钥解密
+        openssl_private_decrypt($base,$rsa,$key);   //私钥解密
         echo "原来数据：".$rsa;
     }
 }

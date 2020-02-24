@@ -310,8 +310,22 @@ class Testcontroller extends Controller
 
         $t_key=file_get_contents('../storage/keys/test_public.key');
         openssl_public_encrypt($rsa,$dersa,$t_key);  //给返回值加密
-        $base=base64_encode($dersa);
-        return $base;
+        $base=base64_encode($dersa);      //将 加密的 转位 base64
+        return $base;               //将值返回给 请求的一方   如果返回的是数组 接受的将是json
 
+    }
+
+    //签名公钥验证签名私钥
+    public function rsaSign(){
+        $data=$_GET['data'];
+        $sign= base64_decode($_GET['sign']);
+        $key=openssl_pkey_get_public('file://'.storage_path('keys/test_public.key'));
+        $a=openssl_verify($data,$sign,$key,OPENSSL_ALGO_SHA256);
+        //如果签名正确返回 1, 签名错误返回 0, 内部发生错误则返回-1.
+        if($a==1){
+            echo "验证成功";
+        }else{
+            echo "验证失败";
+        }
     }
 }

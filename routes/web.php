@@ -67,6 +67,8 @@ Route::prefix('/test')->middleware('ApiFilter')->group(function(){
     Route::get('/decrypt1','Testcontroller@decrypt1');  //对称
     
     Route::get('/rsa1','Testcontroller@rsa1');  //非对称
+
+    Route::get('/rsaSign','Testcontroller@rsaSign');  //签名公钥验证签名私钥
       
 });
 

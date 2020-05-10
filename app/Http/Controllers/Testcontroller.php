@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Redis;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use DB;
 
 class Testcontroller extends Controller
 {
@@ -326,6 +328,20 @@ class Testcontroller extends Controller
             echo "验证成功";
         }else{
             echo "验证失败";
+        }
+    }
+
+    public function adduser()
+    {
+        for($i=0;$i<500000;$i++){
+            $data=[
+                'name'=>Str::random(8),
+                'email'=>Str::random(10),
+                'mibble'=>'13'.mt_rand('111111111',999999999),
+                'pass'=>password_hash(Str::random(8),PASSWORD_BCRYPT)
+            ];
+            $id=DB::table('testuser')->insertGetId($data);
+            echo $id;echo '<br>';
         }
     }
 }

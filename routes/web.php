@@ -37,6 +37,7 @@ Route::prefix('/goods')->middleware('ApiFilter')->group(function(){
 
 Route::get('/alitest','AliController@alitest');   //支付
 
+Route::get('/adduser','Testcontroller@adduser');
 
 //测试
 Route::prefix('/test')->middleware('ApiFilter')->group(function(){
